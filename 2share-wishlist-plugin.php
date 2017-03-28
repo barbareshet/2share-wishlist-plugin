@@ -29,16 +29,19 @@ add_action('wp_ajax_nopriv_toshare_add_wishlist','toshare_add_wishlist_process')
  * Ajax wishlist
  */
 function toshare_add_wishlist_process(){
-
+    global $post;
     $post_id = (int)$_POST['postId'];
     $user_ip = $_SERVER['REMOTE_ADDR'];
-        if( !thshare_has_wishlisted($post_id) ){
+        if( !toshare_has_wishlisted($post_id) ){
             //save metadata
             add_post_meta($post->ID, 'fav_posts', $post_id);
+            add_post_meta($post->ID, 'user_ip', $user_ip);
+            echo $post_id;
+            echo $user_ip;
         }
     exit();
 }
-function thshare_has_wishlisted($post_id){
+function toshare_has_wishlisted($post_id){
     $user_ip = $_SERVER['REMOTE_ADDR'];
     $values = get_post_meta($post->ID, 'fav_posts');
 

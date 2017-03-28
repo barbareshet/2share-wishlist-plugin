@@ -11,7 +11,7 @@
             $(this).find('i').addClass('fa-heart');
             $('i.fa-heart').css({color:'#dd4b39'});
                 $.post(document.location.protocol+'//'+document.location.host+'/wp-admin/admin-ajax.php', toshareWishlistAjax, function (response) {
-                    
+                    alert(response);
                     }
                 );
             // console.log('wishlist button click');
